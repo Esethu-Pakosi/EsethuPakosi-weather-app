@@ -26,22 +26,30 @@ function formatedDate(date) {
 let now = document.querySelector("li.time");
 let currentTime = new Date();
 now.innerHTML = formatedDate(currentTime);
+let iconElement = document.querySelector("#icon")
 
 function displayWeather(response) {
+  console.log(response.data)
   let roundedTemp = Math.round(response.data.main.temp);
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#digit").innerHTML = `${roundedTemp}°C`;
   document.querySelector(
     "#humidity"
-  ).innerHTML = `${response.data.main.humidity}%`;
+  )
+  .innerHTML = `${response.data.main.humidity}%`;
   document.querySelector("#winds").innerHTML = `${Math.round(
     response.data.wind.speed
   )} km/h`;
   document.querySelector(
     "#precipitation"
-  ).innerHTML = `${response.data.weather[0].precipitation} %`;
+  )
+  .innerHTML = `${response.data.weather[0].precipitation} %`;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
+   iconElement.setAttribute(
+     "src",
+     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+   ); 
 }
 
 function searchCity(city) {
