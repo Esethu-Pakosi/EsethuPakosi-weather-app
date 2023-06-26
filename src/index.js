@@ -29,10 +29,12 @@ now.innerHTML = formatedDate(currentTime);
 let iconElement = document.querySelector("#icon")
 
 function displayWeather(response) {
-  console.log(response.data)
+  
   let roundedTemp = Math.round(response.data.main.temp);
   document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#digit").innerHTML = `${roundedTemp}°C`;
+  document.querySelector(
+    "#digit"
+  ).innerHTML = `${roundedTemp}`;
   document.querySelector(
     "#humidity"
   )
@@ -49,7 +51,8 @@ function displayWeather(response) {
    iconElement.setAttribute(
      "src",
      `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-   ); 
+   );
+    
 }
 
 function searchCity(city) {
@@ -81,5 +84,7 @@ function displayLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
+
 let currentLocation = document.querySelector("#current-location-button");
 currentLocation.addEventListener("click", displayLocation);
+
